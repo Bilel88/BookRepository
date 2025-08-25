@@ -37,9 +37,7 @@
     <last-used-providers />
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">
-    <open-files>
-      <object connection-id="36da6c59-64df-4791-82d6-8a5d6f9de55c" object-ref="consoles/Connection" />
-    </open-files>
+    <open-files />
   </component>
   <component name="DBNavigator.Project.DatabaseSessionManager">
     <connection id="36da6c59-64df-4791-82d6-8a5d6f9de55c" />
@@ -60,6 +58,11 @@
     <filter-actions connection-id="d237e7be-0de2-4126-bd47-80191b14f710" dataset="public.users_roles" active-filter-id="d06c373e-398c-4b07-ad54-ebe5f0d81f5c">
       <filter id="d06c373e-398c-4b07-ad54-ebe5f0d81f5c" name="1" temporary="false" custom-name="false" type="basic" join-type="AND">
         <condition column="roles_id" operator="=" value="1" active="true" />
+      </filter>
+    </filter-actions>
+    <filter-actions connection-id="d237e7be-0de2-4126-bd47-80191b14f710" dataset="public.book_transaction_history" active-filter-id="136afca4-d8cb-4a97-a76f-7e1f937583a2">
+      <filter id="136afca4-d8cb-4a97-a76f-7e1f937583a2" name="Filter" temporary="false" custom-name="false" type="basic" join-type="AND">
+        <condition column="id" operator="=" value="" active="true" />
       </filter>
     </filter-actions>
   </component>
