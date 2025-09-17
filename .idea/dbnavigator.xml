@@ -11,18 +11,28 @@
   </component>
   <component name="DBNavigator.Project.DatabaseAssistantManager">
     <assistants>
-      <assistant-state connection-id="36da6c59-64df-4791-82d6-8a5d6f9de55c" default-profile-name="" selected-profile-name="" selected-model-name="" assistant-type="GENERIC" selected-action="SHOW_SQL" availability="UNAVAILABLE" acknowledgement="NONE">
-        <messages />
+      <assistant-state connection-id="36da6c59-64df-4791-82d6-8a5d6f9de55c" default-profile-name="" selected-conversation-id="2F17E225D88E42AC87919DDFD4277B0F" assistant-type="GENERIC" availability="UNAVAILABLE" acknowledgement="NONE">
+        <conversations>
+          <conversation id="2F17E225D88E42AC87919DDFD4277B0F" title="" session-signature="" timestamp="1756572958227">
+            <messages />
+            <context profile="" model="" action="SHOW_SQL" interactive="false" />
+          </conversation>
+        </conversations>
       </assistant-state>
-      <assistant-state connection-id="d237e7be-0de2-4126-bd47-80191b14f710" default-profile-name="" selected-profile-name="" selected-model-name="" assistant-type="GENERIC" selected-action="SHOW_SQL" availability="UNAVAILABLE" acknowledgement="NONE">
-        <messages />
+      <assistant-state connection-id="d237e7be-0de2-4126-bd47-80191b14f710" default-profile-name="" selected-conversation-id="37A9FED50BB04138B1D9DF240CD7505F" assistant-type="GENERIC" availability="UNAVAILABLE" acknowledgement="NONE">
+        <conversations>
+          <conversation id="37A9FED50BB04138B1D9DF240CD7505F" title="" session-signature="" timestamp="1756572958231">
+            <messages />
+            <context profile="" model="" action="SHOW_SQL" interactive="false" />
+          </conversation>
+        </conversations>
       </assistant-state>
     </assistants>
   </component>
   <component name="DBNavigator.Project.DatabaseBrowserManager">
     <autoscroll-to-editor value="false" />
     <autoscroll-from-editor value="true" />
-    <show-object-properties value="false" />
+    <show-object-properties value="true" />
     <loaded-nodes />
   </component>
   <component name="DBNavigator.Project.DatabaseConsoleManager">
@@ -30,14 +40,26 @@
       <console name="Connection" type="STANDARD" schema="postgres" session="Pool" />
     </connection>
     <connection id="d237e7be-0de2-4126-bd47-80191b14f710">
-      <console name="Connection 1" type="STANDARD" schema="public" session="Main"><![CDATA[SELECT * FROM users where email = 'sakovuhi.bilel@gmail.com';]]></console>
+      <console name="Connection 1" type="STANDARD" schema="public" session="Main"><![CDATA[Select *
+            FROM Book_Transaction_History bth inner join book b on (bth.user_id = b.owner_id)
+            WHERE user_id = 202
+
+
+update Book_Transaction_History 
+set 
+ returned = false]]></console>
+      <console name="Connection2" type="STANDARD" schema="public" session="Main"><![CDATA[INSERT INTO feedback (id, note, comment, book_id, created_date, created_by)
+VALUES (1, 4.5, 'Excellent livre !', 16, NOW(), 152);]]></console>
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseEditorStateManager">
     <last-used-providers />
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">
-    <open-files />
+    <open-files>
+      <object connection-id="d237e7be-0de2-4126-bd47-80191b14f710" object-ref="consoles/Connection 1" />
+      <object connection-id="d237e7be-0de2-4126-bd47-80191b14f710" object-ref="schemas/public/tables/feedback" />
+    </open-files>
   </component>
   <component name="DBNavigator.Project.DatabaseSessionManager">
     <connection id="36da6c59-64df-4791-82d6-8a5d6f9de55c" />
@@ -54,13 +76,19 @@
         <condition column="id" operator="=" value="" active="true" />
       </filter>
     </filter-actions>
-    <filter-actions connection-id="d237e7be-0de2-4126-bd47-80191b14f710" dataset="public.role" active-filter-id="" />
+    <filter-actions connection-id="d237e7be-0de2-4126-bd47-80191b14f710" dataset="public.feedback" active-filter-id="EMPTY_FILTER" />
+    <filter-actions connection-id="d237e7be-0de2-4126-bd47-80191b14f710" dataset="public.role" active-filter-id="EMPTY_FILTER" />
     <filter-actions connection-id="d237e7be-0de2-4126-bd47-80191b14f710" dataset="public.users_roles" active-filter-id="d06c373e-398c-4b07-ad54-ebe5f0d81f5c">
       <filter id="d06c373e-398c-4b07-ad54-ebe5f0d81f5c" name="1" temporary="false" custom-name="false" type="basic" join-type="AND">
         <condition column="roles_id" operator="=" value="1" active="true" />
       </filter>
     </filter-actions>
-    <filter-actions connection-id="d237e7be-0de2-4126-bd47-80191b14f710" dataset="public.book_transaction_history" active-filter-id="136afca4-d8cb-4a97-a76f-7e1f937583a2">
+    <filter-actions connection-id="d237e7be-0de2-4126-bd47-80191b14f710" dataset="public.book" active-filter-id="EMPTY_FILTER">
+      <filter id="9cfcf158-0c6d-424d-b036-71da0ca4a19d" name="52" temporary="false" custom-name="false" type="basic" join-type="AND">
+        <condition column="owner_id" operator="!=" value="52" active="true" />
+      </filter>
+    </filter-actions>
+    <filter-actions connection-id="d237e7be-0de2-4126-bd47-80191b14f710" dataset="public.book_transaction_history" active-filter-id="EMPTY_FILTER">
       <filter id="136afca4-d8cb-4a97-a76f-7e1f937583a2" name="Filter" temporary="false" custom-name="false" type="basic" join-type="AND">
         <condition column="id" operator="=" value="" active="true" />
       </filter>
@@ -73,6 +101,9 @@
     <last-used-operator value="EQUAL" />
     <filters />
   </component>
+  <component name="DBNavigator.Project.ParserDiagnosticsManager">
+    <diagnostics-history />
+  </component>
   <component name="DBNavigator.Project.ScriptExecutionManager" clear-outputs="true">
     <recently-used-interfaces>
       <mapping database-type="POSTGRES" interface-id="DEFAULT" />
@@ -80,7 +111,7 @@
   </component>
   <component name="DBNavigator.Project.Settings">
     <connections>
-      <connection id="36da6c59-64df-4791-82d6-8a5d6f9de55c" active="true" signed="true">
+      <connection source-id="" id="36da6c59-64df-4791-82d6-8a5d6f9de55c" active="true" signed="true">
         <database>
           <name value="Connection" />
           <description value="" />
@@ -96,6 +127,9 @@
           <database value="postgres" />
           <tns-folder value="" />
           <tns-profile value="" />
+          <server-type value="" />
+          <protocol value="" />
+          <url-parameters />
           <type value="USER_PASSWORD" />
           <user value="" />
           <token-type value="" />
@@ -154,6 +188,7 @@
             <object-type name="CHARSET" enabled="true" />
             <object-type name="TABLE" enabled="true" />
             <object-type name="VIEW" enabled="true" />
+            <object-type name="JSON_VIEW" enabled="true" />
             <object-type name="MATERIALIZED_VIEW" enabled="true" />
             <object-type name="NESTED_TABLE" enabled="true" />
             <object-type name="COLUMN" enabled="true" />
@@ -170,9 +205,9 @@
             <object-type name="TYPE_ATTRIBUTE" enabled="true" />
             <object-type name="ARGUMENT" enabled="true" />
             <object-type name="JAVA_CLASS" enabled="true" />
-            <object-type name="JAVA_INNER_CLASS" enabled="true" />
             <object-type name="JAVA_FIELD" enabled="true" />
             <object-type name="JAVA_METHOD" enabled="true" />
+            <object-type name="JAVA_RESOURCE" enabled="true" />
             <object-type name="DIMENSION" enabled="true" />
             <object-type name="CLUSTER" enabled="true" />
             <object-type name="DBLINK" enabled="true" />
@@ -181,7 +216,7 @@
           </object-type-filter>
         </object-filters>
       </connection>
-      <connection id="d237e7be-0de2-4126-bd47-80191b14f710" active="true" signed="true">
+      <connection source-id="" id="d237e7be-0de2-4126-bd47-80191b14f710" active="true" signed="true">
         <database>
           <name value="Connection 1" />
           <description value="" />
@@ -197,6 +232,9 @@
           <database value="book_social_network" />
           <tns-folder value="" />
           <tns-profile value="" />
+          <server-type value="" />
+          <protocol value="" />
+          <url-parameters />
           <type value="USER_PASSWORD" />
           <user value="username" />
           <token-type value="" />
@@ -255,6 +293,7 @@
             <object-type name="CHARSET" enabled="true" />
             <object-type name="TABLE" enabled="true" />
             <object-type name="VIEW" enabled="true" />
+            <object-type name="JSON_VIEW" enabled="true" />
             <object-type name="MATERIALIZED_VIEW" enabled="true" />
             <object-type name="NESTED_TABLE" enabled="true" />
             <object-type name="COLUMN" enabled="true" />
@@ -271,9 +310,9 @@
             <object-type name="TYPE_ATTRIBUTE" enabled="true" />
             <object-type name="ARGUMENT" enabled="true" />
             <object-type name="JAVA_CLASS" enabled="true" />
-            <object-type name="JAVA_INNER_CLASS" enabled="true" />
             <object-type name="JAVA_FIELD" enabled="true" />
             <object-type name="JAVA_METHOD" enabled="true" />
+            <object-type name="JAVA_RESOURCE" enabled="true" />
             <object-type name="DIMENSION" enabled="true" />
             <object-type name="CLUSTER" enabled="true" />
             <object-type name="DBLINK" enabled="true" />
@@ -289,6 +328,7 @@
         <navigation-history-size value="100" />
         <show-object-details value="false" />
         <enable-sticky-paths value="true" />
+        <enable-quick-filters value="false" />
       </general>
       <filters>
         <object-type-filter>
@@ -299,6 +339,7 @@
           <object-type name="CHARSET" enabled="true" />
           <object-type name="TABLE" enabled="true" />
           <object-type name="VIEW" enabled="true" />
+          <object-type name="JSON_VIEW" enabled="true" />
           <object-type name="MATERIALIZED_VIEW" enabled="true" />
           <object-type name="NESTED_TABLE" enabled="true" />
           <object-type name="COLUMN" enabled="true" />
@@ -315,9 +356,9 @@
           <object-type name="TYPE_ATTRIBUTE" enabled="true" />
           <object-type name="ARGUMENT" enabled="true" />
           <object-type name="JAVA_CLASS" enabled="true" />
-          <object-type name="JAVA_INNER_CLASS" enabled="true" />
           <object-type name="JAVA_FIELD" enabled="true" />
           <object-type name="JAVA_METHOD" enabled="true" />
+          <object-type name="JAVA_RESOURCE" enabled="true" />
           <object-type name="DIMENSION" enabled="true" />
           <object-type name="CLUSTER" enabled="true" />
           <object-type name="DBLINK" enabled="true" />
@@ -348,6 +389,7 @@
           <object-type name="CHARSET" enabled="false" />
           <object-type name="TABLE" enabled="true" />
           <object-type name="VIEW" enabled="true" />
+          <object-type name="JSON VIEW" enabled="true" />
           <object-type name="MATERIALIZED VIEW" enabled="true" />
           <object-type name="INDEX" enabled="true" />
           <object-type name="CONSTRAINT" enabled="true" />
@@ -364,6 +406,7 @@
           <object-type name="JAVA FIELD" enabled="true" />
           <object-type name="JAVA METHOD" enabled="true" />
           <object-type name="JAVA PARAMETER" enabled="true" />
+          <object-type name="JAVA RESOURCE" enabled="true" />
           <object-type name="DIMENSION" enabled="false" />
           <object-type name="CLUSTER" enabled="false" />
           <object-type name="DBLINK" enabled="false" />
@@ -464,6 +507,7 @@
           <user-schema>
             <filter-element type="OBJECT" id="table" selected="true" />
             <filter-element type="OBJECT" id="view" selected="true" />
+            <filter-element type="OBJECT" id="json view" selected="true" />
             <filter-element type="OBJECT" id="materialized view" selected="true" />
             <filter-element type="OBJECT" id="index" selected="true" />
             <filter-element type="OBJECT" id="constraint" selected="true" />
@@ -481,6 +525,7 @@
           <public-schema>
             <filter-element type="OBJECT" id="table" selected="false" />
             <filter-element type="OBJECT" id="view" selected="false" />
+            <filter-element type="OBJECT" id="json view" selected="false" />
             <filter-element type="OBJECT" id="materialized view" selected="false" />
             <filter-element type="OBJECT" id="index" selected="false" />
             <filter-element type="OBJECT" id="constraint" selected="false" />
@@ -498,6 +543,7 @@
           <any-schema>
             <filter-element type="OBJECT" id="table" selected="true" />
             <filter-element type="OBJECT" id="view" selected="true" />
+            <filter-element type="OBJECT" id="json view" selected="true" />
             <filter-element type="OBJECT" id="materialized view" selected="true" />
             <filter-element type="OBJECT" id="index" selected="true" />
             <filter-element type="OBJECT" id="constraint" selected="true" />
@@ -526,6 +572,7 @@
           <user-schema>
             <filter-element type="OBJECT" id="table" selected="true" />
             <filter-element type="OBJECT" id="view" selected="true" />
+            <filter-element type="OBJECT" id="json view" selected="true" />
             <filter-element type="OBJECT" id="materialized view" selected="true" />
             <filter-element type="OBJECT" id="index" selected="true" />
             <filter-element type="OBJECT" id="constraint" selected="true" />
@@ -543,6 +590,7 @@
           <public-schema>
             <filter-element type="OBJECT" id="table" selected="true" />
             <filter-element type="OBJECT" id="view" selected="true" />
+            <filter-element type="OBJECT" id="json view" selected="true" />
             <filter-element type="OBJECT" id="materialized view" selected="true" />
             <filter-element type="OBJECT" id="index" selected="true" />
             <filter-element type="OBJECT" id="constraint" selected="true" />
@@ -560,6 +608,7 @@
           <any-schema>
             <filter-element type="OBJECT" id="table" selected="true" />
             <filter-element type="OBJECT" id="view" selected="true" />
+            <filter-element type="OBJECT" id="json view" selected="true" />
             <filter-element type="OBJECT" id="materialized view" selected="true" />
             <filter-element type="OBJECT" id="index" selected="true" />
             <filter-element type="OBJECT" id="constraint" selected="true" />
@@ -577,6 +626,7 @@
         </extended-filter>
       </filters>
       <sorting enabled="true">
+        <sorting-element type="OBJECT" id="json view" />
         <sorting-element type="RESERVED_WORD" id="keyword" />
         <sorting-element type="RESERVED_WORD" id="datatype" />
         <sorting-element type="OBJECT" id="column" />
@@ -698,7 +748,9 @@
     </general-settings>
   </component>
   <component name="DBNavigator.Project.StatementExecutionManager">
-    <execution-variables />
+    <execution-variables>
+      <file file-url="db://d237e7be-0de2-4126-bd47-80191b14f710/consoles/Connection 1" />
+    </execution-variables>
     <execution-variable-types />
   </component>
 </project>

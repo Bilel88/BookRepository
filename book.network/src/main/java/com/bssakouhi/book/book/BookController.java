@@ -2,9 +2,7 @@ package com.bssakouhi.book.book;
 
 import com.bssakouhi.book.common.PageResponse;
 import io.swagger.v3.oas.annotations.Parameter;
-import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
@@ -19,11 +17,24 @@ public class BookController {
 
     private final BookService service;
 
+
+    @PostMapping("/api/test")
+    public ResponseEntity<String> testEndpoint(@RequestBody BookRequest request) {
+
+        System.out.println("📥 Payload brut réçu => title=" + request.toString() +
+                "");
+        return ResponseEntity.ok("Received");
+    }
     @PostMapping("/addBook")
     public ResponseEntity<Integer> saveBook (
-            @Valid @RequestBody  BookRequest request,
+            @RequestBody BookRequest request,
             Authentication connectedUser
     ){
+        System.out.println("📥 Payload brut reçu => title=" + request.toString() +
+                ", author=" + request.authorName() +
+                ", isbn=" + request.isbn() +
+                ", synopsis=" + request.synopsis() +
+                ", shareable=" + request.shareable());
         return ResponseEntity.ok(service.save(request,connectedUser));
     }
 
@@ -109,14 +120,14 @@ public class BookController {
     }
 
     @PostMapping(value = "/cover/{book_id}", consumes = "multipart/form-data")
-    public ResponseEntity<Integer> uploadBookCoverPicture(
+    public ResponseEntity<?> uploadBookCoverPicture(
             @PathVariable("book_id") Integer bookId,
             @Parameter()
             @RequestPart("file") MultipartFile file,
             Authentication connectedUser
     ){
         service.uploadBookCoverPicture(file, connectedUser, bookId);
-        return ResponseEntity.ok(service.approveReturnBorrowedBook(bookId, connectedUser));
+        return ResponseEntity.accepted().build();
     }
 
 }

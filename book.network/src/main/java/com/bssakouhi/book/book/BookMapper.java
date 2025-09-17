@@ -14,7 +14,7 @@ public class BookMapper {
                 .authorName(request.authorName())
                 .synopsis(request.synopsis())
                 .archived(false)
-                .shareable(request.shareable())
+                .shareable(Boolean.TRUE.equals(request.shareable()))
                 .build();
     }
 

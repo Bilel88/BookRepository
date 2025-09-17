@@ -29,8 +29,10 @@ public class AuthenticationController {
     @PostMapping("/authenticate")
     @ResponseStatus(HttpStatus.ACCEPTED)
     public ResponseEntity<AuthenticationResponse> authenticate(
-            @RequestBody @Valid AuthenticationRequest request
+            @Valid @RequestBody AuthenticationRequest request
     ){
+        System.out.println("📥 Payload brut reçu => title=" + request.toString() +
+                "");
         return ResponseEntity.ok(service.authenticate(request));
     }
 

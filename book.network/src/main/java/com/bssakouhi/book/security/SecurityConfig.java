@@ -1,6 +1,8 @@
 package com.bssakouhi.book.security;
 
 
+import com.bssakouhi.book.log.LoggingFilter;
+import com.bssakouhi.book.log.RequestWrapperFilter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -22,6 +24,8 @@ import static org.springframework.security.config.http.SessionCreationPolicy.STA
 public class SecurityConfig {
 
     private final JwtFilter jwtAuthFilter;
+    private final LoggingFilter loggingFilter;
+    private final RequestWrapperFilter requestWrapperFilter;
     private final AuthenticationProvider authenticationProvider;
 
     @Bean
@@ -49,7 +53,11 @@ public class SecurityConfig {
                 )
                 .sessionManagement(session -> session.sessionCreationPolicy(STATELESS))
                 .authenticationProvider(authenticationProvider)
-                .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
+                .addFilterBefore(requestWrapperFilter, UsernamePasswordAuthenticationFilter.class)
+                .addFilterBefore(loggingFilter, UsernamePasswordAuthenticationFilter.class)    // Logging avant Jwt
+                .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);  // Jwt avant UsernamePasswordAuthenticationFilter
+
+
         return http.build();
     }
 }

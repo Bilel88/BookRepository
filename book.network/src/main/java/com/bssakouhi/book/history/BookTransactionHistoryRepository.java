@@ -4,7 +4,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.security.core.Authentication;
 
 import java.util.Optional;
 
@@ -38,15 +37,15 @@ public interface BookTransactionHistoryRepository extends JpaRepository<BookTran
             AND history.returned = false
             AND history.returnApproved = false
             """)
-    Optional<BookTransactionHistory> findByBookIdAndUserId(Integer bookId, Authentication connectedUser);
+    Optional<BookTransactionHistory> findByBookIdAndUserId(Integer bookId, Integer userId);
 
     @Query("""
             Select history
             FROM BookTransactionHistory history
-            WHERE history.owner.id = :userId
+            WHERE history.user.id = :userId
             AND history.book.id = :bookId
             AND history.returned = true
             AND history.returnApproved = false
             """)
-    Optional<BookTransactionHistory> findByBookIdAndOwnerId(Integer bookId, Authentication connectedUser);
+    Optional<BookTransactionHistory> findByBookIdAndOwnerId(Integer bookId, Integer userId);
 }

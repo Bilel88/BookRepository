@@ -4,6 +4,7 @@ package com.bssakouhi.book.handler;
 import com.bssakouhi.book.exception.OperationNotPermittedException;
 import jakarta.mail.MessagingException;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.authentication.LockedException;
@@ -107,4 +108,11 @@ public class GlobalExceptionHandler {
                                 .build()
                 );
     }
+
+    @ExceptionHandler(HttpMessageNotReadableException.class)
+    public ResponseEntity<String> handleDeserializationError(HttpMessageNotReadableException ex) {
+        System.out.println("❌ Erreur de désérialisation : " + ex.getMessage());
+        return ResponseEntity.badRequest().body("Format JSON invalide ou type incompatible");
+    }
+
 }
